@@ -1,11 +1,13 @@
 package com.alibaba.excel.write.metadata;
 
+import com.alibaba.excel.support.ExcelTypeEnum;
+import com.alibaba.excel.write.handler.WriteHandler;
+
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import com.alibaba.excel.support.ExcelTypeEnum;
-import com.alibaba.excel.write.handler.WriteHandler;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Workbook
@@ -85,6 +87,11 @@ public class WriteWorkbook extends WriteBasicParameter {
      */
     @Deprecated
     private com.alibaba.excel.event.WriteHandler writeHandler;
+
+    /**
+     * Excel属性
+     */
+    private Map<String, Object> workProperties;
 
     public ExcelTypeEnum getExcelType() {
         return excelType;
@@ -180,5 +187,20 @@ public class WriteWorkbook extends WriteBasicParameter {
 
     public void setWriteExcelOnException(Boolean writeExcelOnException) {
         this.writeExcelOnException = writeExcelOnException;
+    }
+
+    public Map<String, Object> getWorkProperties() {
+        return workProperties;
+    }
+
+    public void setWorkProperties(Map<String, Object> workProperties) {
+        this.workProperties = workProperties;
+    }
+
+    public void putWorkProperties(String key, Object value) {
+        if (workProperties == null){
+            workProperties = new HashMap<String, Object>(16);
+        }
+        workProperties.put(key, value);
     }
 }

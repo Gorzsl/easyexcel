@@ -1,13 +1,14 @@
 package com.alibaba.excel.write.builder;
 
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.excel.write.handler.WriteHandler;
 import com.alibaba.excel.write.metadata.WriteWorkbook;
+
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Map;
 
 /**
  * Build ExcelBuilder
@@ -123,6 +124,11 @@ public class ExcelWriterBuilder extends AbstractExcelWriterParameterBuilder<Exce
     @Deprecated
     public ExcelWriterBuilder registerWriteHandler(com.alibaba.excel.event.WriteHandler writeHandler) {
         writeWorkbook.setWriteHandler(writeHandler);
+        return this;
+    }
+
+    public ExcelWriterBuilder properties(Map<String, Object> properties){
+        writeWorkbook.setWorkProperties(properties);
         return this;
     }
 
